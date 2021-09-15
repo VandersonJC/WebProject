@@ -13,45 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.UserDAO;
 
-@WebServlet(urlPatterns = "/acaoUser")
-public class acaoUser extends HttpServlet {
+@WebServlet(urlPatterns = "/acaoUpdateUser")
+public class acaoUpdateUser extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String action = req.getParameter("action");
-
-		if (action != null) {
-
-			UserDAO userDAO = new UserDAO();
-			User user = new User();
-			List<User> list = userDAO.listar();
-			int id = Integer.parseInt(req.getParameter("id"));
-			for (int i = 0; i < list.size(); i++) {
-				if (id == list.get(i).getId()) {
-					user.setId(list.get(i).getId());
-					user.setName(list.get(i).getName());
-					user.setLogin(list.get(i).getLogin());
-					user.setPassword(list.get(i).getPassword());
-					user.setModality(list.get(i).getModality());
-					user.setStatus(list.get(i).getStatus());
-				}
-
-			}
-
-			req.setAttribute("user", user);
-
-			RequestDispatcher dispathcer = req.getRequestDispatcher("pagina-update-user.jsp");
-			dispathcer.forward(req, resp);
-
-		}
 
 		super.doGet(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		String id = req.getParameter("id");
 		String name = req.getParameter("name");
 		String login = req.getParameter("login");
 		String pass = req.getParameter("pass");
@@ -66,7 +39,9 @@ public class acaoUser extends HttpServlet {
 			modality = "user";
 		}
 
+		int idUser = Integer.parseInt(id);
 		User user = new User();
+		user.setId(idUser);
 		user.setName(name);
 		user.setLogin(login);
 		user.setModality(modality);

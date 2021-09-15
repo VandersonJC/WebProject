@@ -1,3 +1,5 @@
+
+<%@page import="entities.*"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,22 +72,31 @@
 			</div>
 		</div>
 	</div>
+	
+	<% 
+	
+	   // User user = request.getParameter("user"); 
+	
+	
+	%>
+	
+	
 	<div id="center-container">
 		<div id="center-container-navigation">
-			<form action="acaoUser" id="form-create-project" method="POST">
+			<form action="acaoUpdateUser" id="form-create-project" method="POST">
 				<div class="form-container-create-project">
-					<!-- <input Style="display: none;" name="id"></input> --> 
+						<input Style="display: none;" name="id" value="${user.getId()}"></input>
 					<div class="full-box">
 						<label for="name">Nome: </label> <input type="text" name="name"
-							placeholder="Digite o nome do usuário" required="required">
+							placeholder="Digite o nome do usuário" required="required" value="${user.getName()}">
 					</div>
 					<div class="half-box">
 						<label for="date_start">Login: </label> <input type="text"
-							name="login" placeholder="Digite o login" required="required">
+							name="login" placeholder="Digite o login" required="required" value="${user.getLogin()}">
 					</div>
 					<div class="half-box">
 						<label for="date_end">senha: </label> <input type="password"
-							name="pass" placeholder="Digite a senha" required="required">
+							name="pass" placeholder="Digite a senha" required="required" value="${user.getPassword()}">
 					</div>
 					<div class="half-box">
 						<label for="creator">Modalidade: </label> <select

@@ -115,11 +115,23 @@
                                 <td><%=listUser.get(i).getModality() %></td>
                                 <td><%=listUser.get(i).getLogin() %></td>
                                 <td><%=listUser.get(i).getStatus() %></td>
-                                <td><div class="btn-edit-project"><button id="btn-edit"></button></div></td>
-                                <td><div class="btn-delete-project"><button id="btn-delete"></button></div></td>
+                                <td><div class="btn-edit-project"><a href="acaoUser?action=update&id=<%=listUser.get(i).getId()%>"><button id="btn-edit"></button></a></div></td>
+                                <td><div class="btn-delete-project"><a href="?id=<%=listUser.get(i).getId()%>"><button id="btn-delete"></button></a></div></td>
                             </tr>
                         <%}
-                        %>    
+                        %> 
+                        
+                         <%
+                        
+                        String userDelete = request.getParameter("id");
+                        if(userDelete != null){
+                        	User userDel = new User();
+                        	userDel.setId(Integer.parseInt(userDelete));
+                        	new UserDAO().excluir(userDel);
+                        	response.sendRedirect("pagina-users.jsp");
+                        }
+                        
+                        %>  
 
                         </tbody>
                      </table>           
