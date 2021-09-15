@@ -237,6 +237,7 @@ a {
     color: white;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .button-container-create-project {

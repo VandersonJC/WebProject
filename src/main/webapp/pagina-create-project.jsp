@@ -136,7 +136,7 @@
 
                 <div class="button-container-create-project">
                     <button type="submit" name="btn-create-project">Cadastrar</button>
-                    <a href="pagina-projects.html" id="btn-voltar" >Voltar</a>
+                    <a href="pagina-projects.jsp" id="btn-voltar" >Voltar</a>
                     
                 </div>
             </form>
