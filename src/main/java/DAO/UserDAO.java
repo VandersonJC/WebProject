@@ -138,6 +138,22 @@ public class UserDAO {
         return validacao;
     }
     
+  public User retornaUser(String name){
+        
+    	User user = new User();
+        List<User> list = listar();
+        
+        for(int i = 0; i < list.size(); i++){
+            
+            if(name.equals(list.get(i).getName())){
+
+            	user = list.get(i); 
+            }
+            
+        }
+
+        return user;
+    }
     
     
 }  

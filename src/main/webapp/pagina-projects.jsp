@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="DAO.*"%>
+<%@page import="java.util.*"%>
+<%@page import="entities.*"%>
 <html lang="en">
 
 <head>
@@ -9,6 +12,13 @@
 </head>
 
 <body>
+
+	<%  
+		ProjectDAO projectDAO = new ProjectDAO(); 
+		List<Project> listProject = projectDAO.listar();
+	
+	%>
+
 
     <div id="header-container">
         <div class="user-container">
@@ -90,7 +100,7 @@
 
                 </div>
                 <div class="header-projects-buttons">
-                    <div class="total-projects">2 projetos</div>
+                    <div class="total-projects"><%=listProject.size()%> projetos</div>
                     <div class="add-project"><a href="pagina-create-project.jsp">Cadastrar projeto</a></div>
                 </div>
             </div>
@@ -112,13 +122,21 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Entrega 2</td>
-                                <td>Entregar o html</td>
-                                <td>Em andamento</td>
-                                <td>Alta</td>
-                                <td>02/09/2021</td>
-                                <td><div class="btn-edit-project"><button id="btn-edit"></button></div></td>
-                                <td><div class="btn-delete-project"><button id="btn-delete"></button></div></td>
+                            <%
+                            
+                            
+                            for(Project project: listProject){
+                            
+                            %>
+                                <td><%=project.getName()%></td>
+                                <td><%=project.getDescription()%></td>
+                                <td><%=project.getStatus()%></td>
+                                <td><%=project.getPriority()%></td>
+                                <td><%=project.getDateEnd()%></td>
+                                <td><div  value="<%=project.getId()%>"  onclick="cadProjeto(this);" class="btn-edit-project"><button id="btn-edit"></button></div></td>
+                                <td><div  value="<%=project.getId()%>" onclick="delProjeto(this)" class="btn-delete-project"><button id="btn-delete"></button></div></td>
+                                
+                               <% } %> 
                             </tr>
 
                         </tbody>
