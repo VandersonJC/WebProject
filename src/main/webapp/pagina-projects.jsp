@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos</title>
     <link rel="stylesheet" href="CSS/estilo-page.css">
+    <script type="text/javascript" src="JS/scripts.js"></script>
 </head>
 
 <body>

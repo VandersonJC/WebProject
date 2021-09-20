@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.util.*"%>
+<%@page import="DAO.UserDAO"%>
+<%@page import="entities.*"%>
 <html lang="en">
 
 <head>
@@ -9,6 +12,29 @@
 </head>
 
 <body>
+
+	<%
+	   String id = request.getParameter("id"); 
+	   ArrayList<Project> list = new ArrayList<>();
+	if (id == "" || id == null) {
+		Project project = new Project();
+		project.setId(0);
+		project.setName("");
+		project.setClient("");
+		project.setDescription("");
+		project.setDateStart(new Date());
+		project.setDateEnd(new Date());
+		list.add(project);
+	} else {
+		int id_numeric = Integer.parseInt(id);
+		//PessoaDAO pessoaDAO = new PessoaDAO();
+		//list = pessoaDAO.listFilter(id_numeric);
+	}	
+	
+	
+	%>>
+
+
 
 	<div id="header-container">
 		<div class="user-container">
@@ -95,9 +121,17 @@
 					<div class="half-box">
 						<label for="creator">Responsável: </label> <select
 							class="select-create-project" name="autor">
-							<option>Alex</option>
-							<option>Bob</option>
-							<option>Anna</option>
+							<% 
+							
+							UserDAO userDAO = new UserDAO();
+							List<User> listUser = userDAO.listar();
+							
+							for(User user: listUser){
+							%>
+							<option><%=user.getName()%></option>
+							<%
+							}							
+							%>
 						</select>
 					</div>
 					<hr>
