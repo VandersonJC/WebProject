@@ -13,8 +13,8 @@
     <div id="header-container">
         <div class="user-container">
             <div class="user-image"></div>
-            <div class="user-welcome">Bem vindo, </div>
-            <div class="user-name">Vanderson</div>
+			<div class="user-welcome">Bem vindo</div>
+			<div class="user-name"></div>
         </div>
 
     </div>

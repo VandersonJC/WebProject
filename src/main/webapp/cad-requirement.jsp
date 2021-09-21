@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.util.*"%>
+<%@page import="DAO.*"%>
+<%@page import="entities.*"%>
 <html lang="en">
 
 <head>
@@ -9,6 +12,26 @@
 </head>
 
 <body>
+
+	<%
+	String id_project = request.getParameter("id_project");
+	Requirement requirement = new Requirement();
+	int id_project_numeric = Integer.parseInt(id_project);
+	
+	/*if (id_project == "" || id_project == null) {
+		requirement.setId(0);
+		requirement.setDescription("");
+		requirement.setType("");
+	} else {
+		
+		RequirementDAO requirementDAO = new RequirementDAO();
+		requirement = projectDAO.listarFiltrado(id_numeric);
+		System.out.print(project.getName());
+
+	}*/
+	%>
+
+
 
 	<div id="header-container">
 		<div class="user-container">
@@ -72,40 +95,27 @@
 	</div>
 	<div id="center-container">
 		<div id="center-container-navigation">
-			<form action="acaoUser" id="form-create-project" method="POST">
+			<form action="acaoRequirement" id="form-create-project" method="post">
 				<div class="form-container-create-project">
-					<!-- <input Style="display: none;" name="id"></input> --> 
+					<input name="id_requirement" type="hidden" value=""> <input
+						name="id_project" type="hidden" value="<%=id_project_numeric%>">
 					<div class="full-box">
-						<label for="name">Nome: </label> <input type="text" name="name"
-							placeholder="Digite o nome do usuário" required="required">
+						<label for="description">Descrição: </label> <input type="text"
+							name="description" placeholder="Digite a descrição do requisito"
+							required="required" value="">
 					</div>
-					<div class="half-box">
-						<label for="date_start">Login: </label> <input type="text"
-							name="login" placeholder="Digite o login" required="required">
-					</div>
-					<div class="half-box">
-						<label for="date_end">senha: </label> <input type="password"
-							name="pass" placeholder="Digite a senha" required="required">
-					</div>
-					<div class="half-box">
-						<label for="creator">Modalidade: </label> <select
-							class="select-create-project" name="select-user-modality" required="required">
-							<option>Administrador</option>
-							<option>Usuário</option>
-						</select>
-					</div>
-					<div class="half-box">
-						<label for="creator">Status: </label> <select
-							class="select-create-project" name="select-user-status" required="required">
-							<option>Ativo</option>
-							<option>Inativo</option>
-						</select>
-					</div>
-					<div class="button-container-create-project">
-						<button type="submit" name="btn-create-project">Cadastrar</button>
-						<a href="pagina-users.jsp" id="btn-voltar">Voltar</a>
+					<div class="full-box">
+						<label for="name">Tipo: </label> <input type="text" name="type"
+							placeholder="Digite o tipo do requisito" required="required"
+							value="">
 					</div>
 				</div>
+			
+			<div class="button-container-create-project">
+				<button type="submit" name="btn-create-project">Cadastrar</button>
+				<a href="pagina-projects.jsp" id="btn-voltar">Voltar</a>
+
+			</div>
 			</form>
 		</div>
 	</div>

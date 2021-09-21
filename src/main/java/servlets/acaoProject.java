@@ -23,7 +23,19 @@ public class acaoProject extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String id = req.getParameter("delProject");
+		int id_numeric = Integer.parseInt(id);
+		
+		Project project = new Project();
+		project.setId(id_numeric);
+		
+		ProjectDAO projectDAO = new ProjectDAO();
+		projectDAO.excluir(project);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("pagina-projects.jsp");
+		dispatcher.forward(req, resp);
+		
 		super.doGet(req, resp);
 	}
 	
@@ -73,7 +85,7 @@ public class acaoProject extends HttpServlet {
 		projectDAO.salvar(project);
 		
 		if(id != "" || id != null) {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("pagina-create-project.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("pagina-projects.jsp");
 			dispatcher.forward(req, resp);
 		}else {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("pagina-projects.jsp");

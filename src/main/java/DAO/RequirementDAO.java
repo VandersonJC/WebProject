@@ -114,5 +114,44 @@ public class RequirementDAO {
 
         return lista;
     }
+    
+    public List<Requirement> listarPorProjeto(int id_project) {
+
+    	ProjectDAO projectDAO = new ProjectDAO();
+    	
+        String sql = "SELECT * FROM Requeriment";
+
+        List<Requirement> lista = new ArrayList<>();
+
+        try {
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            ResultSet response = stmt.executeQuery();
+
+            while (response.next()) {
+            	
+            	if(id_project == response.getInt("id_project") ) {
+                Requirement requirement = new Requirement();
+                requirement.setId(response.getInt("id"));
+                requirement.setDescription(response.getString("description"));
+                requirement.setType(response.getString("type"));
+                requirement.setProject(projectDAO.listarFiltrado(response.getInt("id_project")));
+                
+                lista.add(requirement);
+            	}
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+        
+        
+        
+        
+
+        return lista;
+    }
 
 }

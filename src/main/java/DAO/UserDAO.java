@@ -155,6 +155,24 @@ public class UserDAO {
         return user;
     }
     
-    
+  public User retornaUser(int id){
+      
+  	User user = new User();
+    List<User> list = listar();
+      
+      for(int i = 0; i < list.size(); i++){
+          
+          if(id == list.get(i).getId()){
+
+          	user = list.get(i); 
+          }
+          
+      }
+
+      return user;
+  }  
+  
+  
+  
 }  
 
